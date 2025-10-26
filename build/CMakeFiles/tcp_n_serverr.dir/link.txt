@@ -1,0 +1,1 @@
+/usr/bin/cc CMakeFiles/tcp_n_serverr.dir/tcp_n_server/Src/main.c.o -o tcp_n_serverr 
