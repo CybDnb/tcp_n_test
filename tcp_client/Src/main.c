@@ -1,70 +1,79 @@
 #include <stdio.h>
-#include <unistd.h>
 #include <stdlib.h>
+#include <stdint.h>
 #include <string.h>
+#include <signal.h>
+#include <unistd.h>
 #include <arpa/inet.h>
 #include <sys/socket.h>
 
-int main(int argc, char const *argv[])
-{
-    if(argc < 3)
-    {
+#include "tcp_protocol.h" 
+
+static void ignore_sigpipe(void) {
+    signal(SIGPIPE, SIG_IGN);
+}
+
+int main(int argc, char const *argv[]) {
+    if (argc < 3) {
         fprintf(stderr, "用法: %s <SERVER_IP> <PORT>\n", argv[0]);
-        exit(EXIT_FAILURE);
-    }
-    int socket_fd = socket(AF_INET,SOCK_STREAM,0);
-    if(socket_fd < 0)
-    {
-        perror("socket");
-        exit(EXIT_FAILURE);
+        return 1;
     }
 
-    struct  sockaddr_in addr;
-    memset(&addr,0,sizeof(addr));
-    addr.sin_family = AF_INET;
-    addr.sin_port = htons(atoi(argv[2]));
-    
-    int pton_res = inet_pton(AF_INET,argv[1],&addr.sin_addr);
-    if(pton_res != 1)
-    {
-        perror("inet_pton");
-        close(socket_fd);
-        exit(EXIT_FAILURE);
+    ignore_sigpipe();
+
+    int fd = socket(AF_INET, SOCK_STREAM, 0);
+    if (fd < 0) { perror("socket"); return 1; }
+
+    struct sockaddr_in svr;
+    memset(&svr, 0, sizeof(svr));
+    svr.sin_family = AF_INET;
+    svr.sin_port   = htons(atoi(argv[2]));
+    if (inet_pton(AF_INET, argv[1], &svr.sin_addr) != 1) {
+        perror("inet_pton"); close(fd); return 1;
     }
 
-    //Return 0 on success, -1 for errors.
-    int conn_res = connect(socket_fd,(struct sockaddr *)&addr,(socklen_t)sizeof(addr));
-    if(conn_res < 0)
-    {
-        perror("connect");
-        close(socket_fd);
-        exit(EXIT_FAILURE);
+    if (connect(fd, (struct sockaddr*)&svr, sizeof(svr)) < 0) {
+        perror("connect"); close(fd); return 1;
     }
 
-    char line[1024];
-    while(fgets(line,sizeof(line),stdin))
-    {
+    char line[4096];
+    while (fgets(line, sizeof(line), stdin)) {
         size_t len = strlen(line);
-        uint8_t len_buf[4];
-        len_buf[0] = (len >> 24) & 0xFF;
-        len_buf[1] = (len >> 16) & 0xFF;
-        len_buf[2] = (len >> 8) & 0xFF;
-        len_buf[3] = len & 0xFF;
 
 
-        send(socket_fd, len_buf, 4, 0);
-        send(socket_fd, line, len, 0);
+        protocol_msg out = {0};
+        out.hdr.version_major  = 1;
+        out.hdr.version_minor  = 0;
+        out.hdr.message_type   = 1;                   // 约定 1=ECHO
+        out.hdr.payload_length = (uint32_t)len;
+        out.payload            = (void*)line;         // 直接用行缓冲区发
 
+        if (send_message(fd, &out) < 0) {
+            perror("send_message");
+            break;
+        }
 
-        uint8_t recv_len_buf[4];
-        recv(socket_fd, recv_len_buf, 4, 0);
-        uint32_t recv_len = (recv_len_buf[0] << 24) | (recv_len_buf[1] << 16) |
-                            (recv_len_buf[2] << 8)  | recv_len_buf[3];
+        protocol_msg in = {0};
+        int r = read_message(fd, &in);
+        if (r == 1) {
+            fprintf(stderr, "server closed\n");
+            break;
+        } else if (r < 0) {
+            perror("read_message");
+            break;
+        }
 
-        char buf[4096];
-        recv(socket_fd, buf, recv_len, 0);
-        write(STDOUT_FILENO, buf, recv_len);
+        if (in.hdr.message_type != out.hdr.message_type) {
+            fprintf(stderr, "warn: unexpected msg_type=%u\n", in.hdr.message_type);
+        }
+
+        if (in.hdr.payload_length > 0 && in.payload) {
+            write(STDOUT_FILENO, in.payload, in.hdr.payload_length);
+        }
+        free(in.payload);
     }
-    close(socket_fd);
+
+    close(fd);
     return 0;
 }
+

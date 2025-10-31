@@ -1,7 +1,5 @@
-/home/wayne/net_study/build/CMakeFiles/client.dir
-/home/wayne/net_study/build/CMakeFiles/server.dir
 /home/wayne/net_study/build/CMakeFiles/tcp_client.dir
 /home/wayne/net_study/build/CMakeFiles/tcp_server.dir
-/home/wayne/net_study/build/CMakeFiles/tcp_n_serverr.dir
+/home/wayne/net_study/build/CMakeFiles/tcp_n_server.dir
 /home/wayne/net_study/build/CMakeFiles/edit_cache.dir
 /home/wayne/net_study/build/CMakeFiles/rebuild_cache.dir

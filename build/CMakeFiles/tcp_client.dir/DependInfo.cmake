@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/wayne/net_study/Protocol/Src/tcp_protocol.c" "CMakeFiles/tcp_client.dir/Protocol/Src/tcp_protocol.c.o" "gcc" "CMakeFiles/tcp_client.dir/Protocol/Src/tcp_protocol.c.o.d"
   "/home/wayne/net_study/tcp_client/Src/main.c" "CMakeFiles/tcp_client.dir/tcp_client/Src/main.c.o" "gcc" "CMakeFiles/tcp_client.dir/tcp_client/Src/main.c.o.d"
   )
 

@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/tcp_client.dir/Protocol/Src/tcp_protocol.c.o"
+  "CMakeFiles/tcp_client.dir/Protocol/Src/tcp_protocol.c.o.d"
   "CMakeFiles/tcp_client.dir/tcp_client/Src/main.c.o"
   "CMakeFiles/tcp_client.dir/tcp_client/Src/main.c.o.d"
   "tcp_client"

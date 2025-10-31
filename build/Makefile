@@ -117,32 +117,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named client
-
-# Build rule for target.
-client: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 client
-.PHONY : client
-
-# fast build rule for target.
-client/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/build
-.PHONY : client/fast
-
-#=============================================================================
-# Target rules for targets named server
-
-# Build rule for target.
-server: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 server
-.PHONY : server
-
-# fast build rule for target.
-server/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/build
-.PHONY : server/fast
-
-#=============================================================================
 # Target rules for targets named tcp_client
 
 # Build rule for target.
@@ -169,65 +143,47 @@ tcp_server/fast:
 .PHONY : tcp_server/fast
 
 #=============================================================================
-# Target rules for targets named tcp_n_serverr
+# Target rules for targets named tcp_n_server
 
 # Build rule for target.
-tcp_n_serverr: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tcp_n_serverr
-.PHONY : tcp_n_serverr
+tcp_n_server: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tcp_n_server
+.PHONY : tcp_n_server
 
 # fast build rule for target.
-tcp_n_serverr/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcp_n_serverr.dir/build.make CMakeFiles/tcp_n_serverr.dir/build
-.PHONY : tcp_n_serverr/fast
+tcp_n_server/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcp_n_server.dir/build.make CMakeFiles/tcp_n_server.dir/build
+.PHONY : tcp_n_server/fast
 
-Core_Client/Src/main.o: Core_Client/Src/main.c.o
-.PHONY : Core_Client/Src/main.o
-
-# target to build an object file
-Core_Client/Src/main.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Core_Client/Src/main.c.o
-.PHONY : Core_Client/Src/main.c.o
-
-Core_Client/Src/main.i: Core_Client/Src/main.c.i
-.PHONY : Core_Client/Src/main.i
-
-# target to preprocess a source file
-Core_Client/Src/main.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Core_Client/Src/main.c.i
-.PHONY : Core_Client/Src/main.c.i
-
-Core_Client/Src/main.s: Core_Client/Src/main.c.s
-.PHONY : Core_Client/Src/main.s
-
-# target to generate assembly for a file
-Core_Client/Src/main.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/Core_Client/Src/main.c.s
-.PHONY : Core_Client/Src/main.c.s
-
-Core_Server/Src/main.o: Core_Server/Src/main.c.o
-.PHONY : Core_Server/Src/main.o
+Protocol/Src/tcp_protocol.o: Protocol/Src/tcp_protocol.c.o
+.PHONY : Protocol/Src/tcp_protocol.o
 
 # target to build an object file
-Core_Server/Src/main.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Core_Server/Src/main.c.o
-.PHONY : Core_Server/Src/main.c.o
+Protocol/Src/tcp_protocol.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcp_client.dir/build.make CMakeFiles/tcp_client.dir/Protocol/Src/tcp_protocol.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcp_server.dir/build.make CMakeFiles/tcp_server.dir/Protocol/Src/tcp_protocol.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcp_n_server.dir/build.make CMakeFiles/tcp_n_server.dir/Protocol/Src/tcp_protocol.c.o
+.PHONY : Protocol/Src/tcp_protocol.c.o
 
-Core_Server/Src/main.i: Core_Server/Src/main.c.i
-.PHONY : Core_Server/Src/main.i
+Protocol/Src/tcp_protocol.i: Protocol/Src/tcp_protocol.c.i
+.PHONY : Protocol/Src/tcp_protocol.i
 
 # target to preprocess a source file
-Core_Server/Src/main.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Core_Server/Src/main.c.i
-.PHONY : Core_Server/Src/main.c.i
+Protocol/Src/tcp_protocol.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcp_client.dir/build.make CMakeFiles/tcp_client.dir/Protocol/Src/tcp_protocol.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcp_server.dir/build.make CMakeFiles/tcp_server.dir/Protocol/Src/tcp_protocol.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcp_n_server.dir/build.make CMakeFiles/tcp_n_server.dir/Protocol/Src/tcp_protocol.c.i
+.PHONY : Protocol/Src/tcp_protocol.c.i
 
-Core_Server/Src/main.s: Core_Server/Src/main.c.s
-.PHONY : Core_Server/Src/main.s
+Protocol/Src/tcp_protocol.s: Protocol/Src/tcp_protocol.c.s
+.PHONY : Protocol/Src/tcp_protocol.s
 
 # target to generate assembly for a file
-Core_Server/Src/main.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/Core_Server/Src/main.c.s
-.PHONY : Core_Server/Src/main.c.s
+Protocol/Src/tcp_protocol.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcp_client.dir/build.make CMakeFiles/tcp_client.dir/Protocol/Src/tcp_protocol.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcp_server.dir/build.make CMakeFiles/tcp_server.dir/Protocol/Src/tcp_protocol.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcp_n_server.dir/build.make CMakeFiles/tcp_n_server.dir/Protocol/Src/tcp_protocol.c.s
+.PHONY : Protocol/Src/tcp_protocol.c.s
 
 tcp_client/Src/main.o: tcp_client/Src/main.c.o
 .PHONY : tcp_client/Src/main.o
@@ -258,7 +214,7 @@ tcp_n_server/Src/main.o: tcp_n_server/Src/main.c.o
 
 # target to build an object file
 tcp_n_server/Src/main.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcp_n_serverr.dir/build.make CMakeFiles/tcp_n_serverr.dir/tcp_n_server/Src/main.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcp_n_server.dir/build.make CMakeFiles/tcp_n_server.dir/tcp_n_server/Src/main.c.o
 .PHONY : tcp_n_server/Src/main.c.o
 
 tcp_n_server/Src/main.i: tcp_n_server/Src/main.c.i
@@ -266,7 +222,7 @@ tcp_n_server/Src/main.i: tcp_n_server/Src/main.c.i
 
 # target to preprocess a source file
 tcp_n_server/Src/main.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcp_n_serverr.dir/build.make CMakeFiles/tcp_n_serverr.dir/tcp_n_server/Src/main.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcp_n_server.dir/build.make CMakeFiles/tcp_n_server.dir/tcp_n_server/Src/main.c.i
 .PHONY : tcp_n_server/Src/main.c.i
 
 tcp_n_server/Src/main.s: tcp_n_server/Src/main.c.s
@@ -274,7 +230,7 @@ tcp_n_server/Src/main.s: tcp_n_server/Src/main.c.s
 
 # target to generate assembly for a file
 tcp_n_server/Src/main.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcp_n_serverr.dir/build.make CMakeFiles/tcp_n_serverr.dir/tcp_n_server/Src/main.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcp_n_server.dir/build.make CMakeFiles/tcp_n_server.dir/tcp_n_server/Src/main.c.s
 .PHONY : tcp_n_server/Src/main.c.s
 
 tcp_server/Src/main.o: tcp_server/Src/main.c.o
@@ -309,17 +265,12 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... client"
-	@echo "... server"
 	@echo "... tcp_client"
-	@echo "... tcp_n_serverr"
+	@echo "... tcp_n_server"
 	@echo "... tcp_server"
-	@echo "... Core_Client/Src/main.o"
-	@echo "... Core_Client/Src/main.i"
-	@echo "... Core_Client/Src/main.s"
-	@echo "... Core_Server/Src/main.o"
-	@echo "... Core_Server/Src/main.i"
-	@echo "... Core_Server/Src/main.s"
+	@echo "... Protocol/Src/tcp_protocol.o"
+	@echo "... Protocol/Src/tcp_protocol.i"
+	@echo "... Protocol/Src/tcp_protocol.s"
 	@echo "... tcp_client/Src/main.o"
 	@echo "... tcp_client/Src/main.i"
 	@echo "... tcp_client/Src/main.s"

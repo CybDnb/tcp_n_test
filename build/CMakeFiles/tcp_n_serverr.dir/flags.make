@@ -4,7 +4,7 @@
 # compile C with /usr/bin/cc
 C_DEFINES = 
 
-C_INCLUDES = 
+C_INCLUDES = -I/home/wayne/net_study/tcp_n_server/Inc -I/home/wayne/net_study/tcp_client/Inc -I/home/wayne/net_study/Protocol/Inc
 
 C_FLAGS = 
 
