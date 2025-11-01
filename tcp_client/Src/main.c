@@ -1,8 +1,3 @@
-// client_msg.c — 兼容 ECHO + 发送文件（TLV 协议）
-// 用法：
-//  1) 交互式回显： ./client_msg <IP> <PORT>
-//  2) 发送文件：   ./client_msg <IP> <PORT> sendfile <PATH>
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
@@ -11,9 +6,8 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 #include <sys/socket.h>
-
-#include "tcp_protocol.h"  // 提供 protocol_msg / read_message / send_message
-#include "tcp_tlv.h"       // 提供 TLV 构造与解析（build_payload_*）
+#include "tcp_protocol.h" 
+#include "tcp_tlv.h"       
 
 static void ignore_sigpipe(void) {
     signal(SIGPIPE, SIG_IGN);
@@ -22,7 +16,6 @@ static void ignore_sigpipe(void) {
 #define CHUNK_SZ (64 * 1024)
 
 static int send_file(int fd, const char *path) {
-    // 1) 打开并获取大小
     FILE *fp = fopen(path, "rb");
     if (!fp) { perror("fopen"); return -1; }
 
@@ -32,11 +25,10 @@ static int send_file(int fd, const char *path) {
     rewind(fp);
     uint64_t fsize = (uint64_t)sz_ll;
 
-    // 2) 发送 FILE_START（TLV: FILENAME + FILESIZE）
-    const char *fname = strrchr(path, '/');  // 只取文件名部分
+    const char *fname = strrchr(path, '/');  
     fname = fname ? fname + 1 : path;
 
-    uint8_t start_payload[1024];  // 文件名一般不长，足够用；若可能很长可动态分配
+    uint8_t start_payload[1024]; 
     uint32_t start_len = 0;
     if (build_payload_file_start(fname, fsize, start_payload, sizeof(start_payload), &start_len) < 0) {
         fprintf(stderr, "build FILE_START payload failed\n");
@@ -57,9 +49,8 @@ static int send_file(int fd, const char *path) {
         return -1;
     }
 
-    // 3) 循环发送 FILE_DATA（TLV: OFFSET + DATA）
     uint8_t data_buf[CHUNK_SZ];
-    uint8_t data_payload[CHUNK_SZ + 32]; // 预留 TLV 头开销
+    uint8_t data_payload[CHUNK_SZ + 32];
     uint64_t offset = 0;
     uint64_t sent_total = 0;
 
@@ -91,7 +82,6 @@ static int send_file(int fd, const char *path) {
         offset     += r;
         sent_total += r;
 
-        // 简单进度打印（每发送一块打印一次）
         fprintf(stderr, "\r[client] sent %llu / %llu bytes (%.1f%%)",
                 (unsigned long long)sent_total,
                 (unsigned long long)fsize,
@@ -101,7 +91,6 @@ static int send_file(int fd, const char *path) {
     fclose(fp);
     fprintf(stderr, "\n");
 
-    // 4) 发送 FILE_END（空载荷）
     protocol_msg mend = {0};
     mend.hdr.version_major  = 1;
     mend.hdr.version_minor  = 0;
@@ -142,7 +131,6 @@ int main(int argc, char const *argv[]) {
         perror("connect"); close(fd); return 1;
     }
 
-    // 文件发送模式： ./client_msg <IP> <PORT> sendfile <PATH>
     if (argc >= 4 && strcmp(argv[3], "sendfile") == 0) {
         if (argc < 5) {
             fprintf(stderr, "缺少文件路径\n");
@@ -154,7 +142,6 @@ int main(int argc, char const *argv[]) {
         return (sr == 0) ? 0 : 1;
     }
 
-    // 否则：交互式 ECHO
     char line[4096];
     while (fgets(line, sizeof(line), stdin)) {
         size_t len = strlen(line);
@@ -162,7 +149,7 @@ int main(int argc, char const *argv[]) {
         protocol_msg out = {0};
         out.hdr.version_major  = 1;
         out.hdr.version_minor  = 0;
-        out.hdr.message_type   = MSG_ECHO;           // 1
+        out.hdr.message_type   = MSG_ECHO;         
         out.hdr.payload_length = (uint32_t)len;
         out.payload            = (void*)line;
 
