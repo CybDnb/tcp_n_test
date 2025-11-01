@@ -102,4 +102,8 @@ CMakeFiles/tcp_n_server.dir/tcp_n_server/Src/main.c.o: \
  /usr/include/x86_64-linux-gnu/bits/types/struct_sigstack.h \
  /usr/include/x86_64-linux-gnu/bits/sigthread.h \
  /usr/include/x86_64-linux-gnu/bits/signal_ext.h \
- /home/wayne/net_study/Protocol/Inc/tcp_protocol.h
+ /usr/include/x86_64-linux-gnu/sys/stat.h \
+ /usr/include/x86_64-linux-gnu/bits/stat.h \
+ /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
+ /home/wayne/net_study/Protocol/Inc/tcp_protocol.h \
+ /home/wayne/net_study/Protocol/Inc/tcp_tlv.h

@@ -1,1 +1,1 @@
-/usr/bin/cc CMakeFiles/tcp_client.dir/tcp_client/Src/main.c.o CMakeFiles/tcp_client.dir/Protocol/Src/tcp_protocol.c.o -o tcp_client 
+/usr/bin/cc CMakeFiles/tcp_client.dir/tcp_client/Src/main.c.o CMakeFiles/tcp_client.dir/Protocol/Src/tcp_protocol.c.o CMakeFiles/tcp_client.dir/Protocol/Src/tcp_tlv.c.o -o tcp_client 

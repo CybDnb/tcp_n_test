@@ -99,4 +99,5 @@ CMakeFiles/tcp_client.dir/tcp_client/Src/main.c.o: \
  /usr/include/asm-generic/sockios.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
  /usr/include/x86_64-linux-gnu/bits/in.h \
- /home/wayne/net_study/Protocol/Inc/tcp_protocol.h
+ /home/wayne/net_study/Protocol/Inc/tcp_protocol.h \
+ /home/wayne/net_study/Protocol/Inc/tcp_tlv.h

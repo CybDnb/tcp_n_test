@@ -185,6 +185,36 @@ Protocol/Src/tcp_protocol.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcp_n_server.dir/build.make CMakeFiles/tcp_n_server.dir/Protocol/Src/tcp_protocol.c.s
 .PHONY : Protocol/Src/tcp_protocol.c.s
 
+Protocol/Src/tcp_tlv.o: Protocol/Src/tcp_tlv.c.o
+.PHONY : Protocol/Src/tcp_tlv.o
+
+# target to build an object file
+Protocol/Src/tcp_tlv.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcp_client.dir/build.make CMakeFiles/tcp_client.dir/Protocol/Src/tcp_tlv.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcp_server.dir/build.make CMakeFiles/tcp_server.dir/Protocol/Src/tcp_tlv.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcp_n_server.dir/build.make CMakeFiles/tcp_n_server.dir/Protocol/Src/tcp_tlv.c.o
+.PHONY : Protocol/Src/tcp_tlv.c.o
+
+Protocol/Src/tcp_tlv.i: Protocol/Src/tcp_tlv.c.i
+.PHONY : Protocol/Src/tcp_tlv.i
+
+# target to preprocess a source file
+Protocol/Src/tcp_tlv.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcp_client.dir/build.make CMakeFiles/tcp_client.dir/Protocol/Src/tcp_tlv.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcp_server.dir/build.make CMakeFiles/tcp_server.dir/Protocol/Src/tcp_tlv.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcp_n_server.dir/build.make CMakeFiles/tcp_n_server.dir/Protocol/Src/tcp_tlv.c.i
+.PHONY : Protocol/Src/tcp_tlv.c.i
+
+Protocol/Src/tcp_tlv.s: Protocol/Src/tcp_tlv.c.s
+.PHONY : Protocol/Src/tcp_tlv.s
+
+# target to generate assembly for a file
+Protocol/Src/tcp_tlv.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcp_client.dir/build.make CMakeFiles/tcp_client.dir/Protocol/Src/tcp_tlv.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcp_server.dir/build.make CMakeFiles/tcp_server.dir/Protocol/Src/tcp_tlv.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcp_n_server.dir/build.make CMakeFiles/tcp_n_server.dir/Protocol/Src/tcp_tlv.c.s
+.PHONY : Protocol/Src/tcp_tlv.c.s
+
 tcp_client/Src/main.o: tcp_client/Src/main.c.o
 .PHONY : tcp_client/Src/main.o
 
@@ -271,6 +301,9 @@ help:
 	@echo "... Protocol/Src/tcp_protocol.o"
 	@echo "... Protocol/Src/tcp_protocol.i"
 	@echo "... Protocol/Src/tcp_protocol.s"
+	@echo "... Protocol/Src/tcp_tlv.o"
+	@echo "... Protocol/Src/tcp_tlv.i"
+	@echo "... Protocol/Src/tcp_tlv.s"
 	@echo "... tcp_client/Src/main.o"
 	@echo "... tcp_client/Src/main.i"
 	@echo "... tcp_client/Src/main.s"

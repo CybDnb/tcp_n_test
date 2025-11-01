@@ -5,6 +5,7 @@ project(tcp_test C)
 
 set(PROTOCOL_SOURCES
     Protocol/Src/tcp_protocol.c
+    Protocol/Src/tcp_tlv.c
 )
 
 # 定义一个目标，用来持有所有公用的头文件路径，方便重用
