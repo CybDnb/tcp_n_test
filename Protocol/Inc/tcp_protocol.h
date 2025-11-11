@@ -7,6 +7,7 @@ typedef struct protocol_header {
     uint8_t  version_minor;
     uint16_t message_type;
     uint32_t payload_length; 
+    uint32_t seq;
 }protocol_header;
 
 typedef struct protocol_msg

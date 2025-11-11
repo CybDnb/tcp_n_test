@@ -21,6 +21,7 @@ CMakeFiles/tcp_server.dir/Protocol/Src/tcp_protocol.c.o: /home/wayne/net_study/P
   /usr/include/netinet/in.h \
   /usr/include/stdc-predef.h \
   /usr/include/stdint.h \
+  /usr/include/stdio.h \
   /usr/include/stdlib.h \
   /usr/include/unistd.h \
   /usr/include/x86_64-linux-gnu/asm/bitsperlong.h \
@@ -53,6 +54,7 @@ CMakeFiles/tcp_server.dir/Protocol/Src/tcp_protocol.c.o: /home/wayne/net_study/P
   /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
+  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
   /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
@@ -60,10 +62,17 @@ CMakeFiles/tcp_server.dir/Protocol/Src/tcp_protocol.c.o: /home/wayne/net_study/P
   /usr/include/x86_64-linux-gnu/bits/time64.h \
   /usr/include/x86_64-linux-gnu/bits/timesize.h \
   /usr/include/x86_64-linux-gnu/bits/types.h \
+  /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
@@ -83,6 +92,7 @@ CMakeFiles/tcp_server.dir/Protocol/Src/tcp_protocol.c.o: /home/wayne/net_study/P
   /usr/include/x86_64-linux-gnu/sys/select.h \
   /usr/include/x86_64-linux-gnu/sys/socket.h \
   /usr/include/x86_64-linux-gnu/sys/types.h \
+  /usr/lib/gcc/x86_64-linux-gnu/13/include/stdarg.h \
   /usr/lib/gcc/x86_64-linux-gnu/13/include/stddef.h \
   /usr/lib/gcc/x86_64-linux-gnu/13/include/stdint.h
 
@@ -244,14 +254,6 @@ CMakeFiles/tcp_server.dir/tcp_server/Src/main.c.o: /home/wayne/net_study/tcp_ser
   /usr/lib/gcc/x86_64-linux-gnu/13/include/stddef.h
 
 
-/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/FILE.h:
-
 /usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
 
 /usr/include/strings.h:
@@ -284,23 +286,33 @@ CMakeFiles/tcp_server.dir/tcp_server/Src/main.c.o: /home/wayne/net_study/tcp_ser
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
-
 /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h:
 
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
+/usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
 
-/usr/include/x86_64-linux-gnu/sys/select.h:
+/usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
 
-/usr/include/x86_64-linux-gnu/bits/environments.h:
+/usr/include/x86_64-linux-gnu/bits/types/FILE.h:
+
+/usr/include/x86_64-linux-gnu/bits/timesize.h:
+
+/usr/include/x86_64-linux-gnu/bits/getopt_core.h:
+
+/usr/include/x86_64-linux-gnu/asm/socket.h:
 
 /usr/include/unistd.h:
 
@@ -314,10 +326,6 @@ CMakeFiles/tcp_server.dir/tcp_server/Src/main.c.o: /home/wayne/net_study/tcp_ser
 
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
 
-/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
-
-/usr/include/x86_64-linux-gnu/asm/errno.h:
-
 /usr/include/string.h:
 
 /usr/include/x86_64-linux-gnu/bits/endian.h:
@@ -328,9 +336,9 @@ CMakeFiles/tcp_server.dir/tcp_server/Src/main.c.o: /home/wayne/net_study/tcp_ser
 
 /usr/include/x86_64-linux-gnu/asm/sockios.h:
 
-/usr/include/x86_64-linux-gnu/bits/stdint-least.h:
-
 /usr/include/linux/posix_types.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdint-least.h:
 
 /usr/include/linux/errno.h:
 
@@ -345,12 +353,6 @@ CMakeFiles/tcp_server.dir/tcp_server/Src/main.c.o: /home/wayne/net_study/tcp_ser
 /usr/include/x86_64-linux-gnu/asm/posix_types_64.h:
 
 /usr/include/stdint.h:
-
-/usr/include/x86_64-linux-gnu/bits/getopt_core.h:
-
-/usr/include/x86_64-linux-gnu/asm/socket.h:
-
-/usr/include/x86_64-linux-gnu/bits/timesize.h:
 
 /usr/include/asm-generic/socket.h:
 
@@ -390,6 +392,14 @@ CMakeFiles/tcp_server.dir/tcp_server/Src/main.c.o: /home/wayne/net_study/tcp_ser
 
 /usr/include/errno.h:
 
+/usr/include/x86_64-linux-gnu/bits/types.h:
+
+/usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
+
+/usr/include/x86_64-linux-gnu/sys/select.h:
+
+/usr/include/x86_64-linux-gnu/bits/environments.h:
+
 /usr/include/x86_64-linux-gnu/bits/confname.h:
 
 /usr/include/netinet/in.h:
@@ -404,9 +414,9 @@ CMakeFiles/tcp_server.dir/tcp_server/Src/main.c.o: /home/wayne/net_study/tcp_ser
 
 /usr/include/x86_64-linux-gnu/bits/floatn.h:
 
-/usr/include/stdio.h:
-
 /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
+
+/usr/include/stdio.h:
 
 /usr/include/x86_64-linux-gnu/bits/getopt_posix.h:
 
@@ -426,6 +436,10 @@ CMakeFiles/tcp_server.dir/tcp_server/Src/main.c.o: /home/wayne/net_study/tcp_ser
 
 /usr/include/x86_64-linux-gnu/bits/select.h:
 
+/usr/include/x86_64-linux-gnu/asm/errno.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
+
 /usr/include/x86_64-linux-gnu/sys/socket.h:
 
 /usr/include/stdc-predef.h:
@@ -441,7 +455,3 @@ CMakeFiles/tcp_server.dir/tcp_server/Src/main.c.o: /home/wayne/net_study/tcp_ser
 /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
 
 /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
-
-/usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
-
-/usr/include/x86_64-linux-gnu/bits/types.h:

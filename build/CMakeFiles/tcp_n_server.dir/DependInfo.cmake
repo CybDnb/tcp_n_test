@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/wayne/net_study/Protocol/Src/tcp_protocol.c" "CMakeFiles/tcp_n_server.dir/Protocol/Src/tcp_protocol.c.o" "gcc" "CMakeFiles/tcp_n_server.dir/Protocol/Src/tcp_protocol.c.o.d"
   "/home/wayne/net_study/Protocol/Src/tcp_tlv.c" "CMakeFiles/tcp_n_server.dir/Protocol/Src/tcp_tlv.c.o" "gcc" "CMakeFiles/tcp_n_server.dir/Protocol/Src/tcp_tlv.c.o.d"
+  "/home/wayne/net_study/tcp_n_server/Src/handle_client.c" "CMakeFiles/tcp_n_server.dir/tcp_n_server/Src/handle_client.c.o" "gcc" "CMakeFiles/tcp_n_server.dir/tcp_n_server/Src/handle_client.c.o.d"
   "/home/wayne/net_study/tcp_n_server/Src/main.c" "CMakeFiles/tcp_n_server.dir/tcp_n_server/Src/main.c.o" "gcc" "CMakeFiles/tcp_n_server.dir/tcp_n_server/Src/main.c.o.d"
   )
 

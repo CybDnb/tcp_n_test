@@ -2,7 +2,23 @@
 #include <errno.h>
 #include <stdlib.h>
 #include <arpa/inet.h>
+#include <stdio.h>
 #include "tcp_protocol.h"
+
+static inline int seq_before(uint32_t a,uint32_t b)
+{
+    return (int32_t)(a - b) < 0;
+}
+
+static inline int seq_after(uint32_t a,uint32_t b)
+{
+    return seq_before(b,a);
+}
+
+static inline uint32_t seq_next(uint32_t s)
+{
+    return s + 1u;
+}
 
 uint32_t u8_to_u32_be(const uint8_t buf[4]) 
 {
@@ -77,6 +93,7 @@ int send_message(int fd,protocol_msg *msg)
     msg_copy.hdr.version_minor = msg->hdr.version_minor;
     msg_copy.hdr.payload_length = htonl(msg->hdr.payload_length);
     msg_copy.hdr.message_type = htons(msg->hdr.message_type);
+    msg_copy.hdr.seq = htonl(msg->hdr.seq);
     int res = send_all(fd,&msg_copy.hdr,sizeof(protocol_header));
     if(res < 0)
     {
@@ -103,10 +120,10 @@ int read_message(int fd,protocol_msg *msg)
         return 1;
     }
     msg->hdr.message_type = ntohs(hdr_copy.message_type);
+    msg->hdr.seq = ntohl(hdr_copy.seq);
     msg->hdr.payload_length = ntohl(hdr_copy.payload_length);
     msg->hdr.version_major = hdr_copy.version_major;
     msg->hdr.version_minor = hdr_copy.version_minor;
-
     uint8_t *data = malloc(sizeof(uint8_t) * msg->hdr.payload_length);
     if(data == NULL)
     {

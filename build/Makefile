@@ -239,6 +239,30 @@ tcp_client/Src/main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcp_client.dir/build.make CMakeFiles/tcp_client.dir/tcp_client/Src/main.c.s
 .PHONY : tcp_client/Src/main.c.s
 
+tcp_n_server/Src/handle_client.o: tcp_n_server/Src/handle_client.c.o
+.PHONY : tcp_n_server/Src/handle_client.o
+
+# target to build an object file
+tcp_n_server/Src/handle_client.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcp_n_server.dir/build.make CMakeFiles/tcp_n_server.dir/tcp_n_server/Src/handle_client.c.o
+.PHONY : tcp_n_server/Src/handle_client.c.o
+
+tcp_n_server/Src/handle_client.i: tcp_n_server/Src/handle_client.c.i
+.PHONY : tcp_n_server/Src/handle_client.i
+
+# target to preprocess a source file
+tcp_n_server/Src/handle_client.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcp_n_server.dir/build.make CMakeFiles/tcp_n_server.dir/tcp_n_server/Src/handle_client.c.i
+.PHONY : tcp_n_server/Src/handle_client.c.i
+
+tcp_n_server/Src/handle_client.s: tcp_n_server/Src/handle_client.c.s
+.PHONY : tcp_n_server/Src/handle_client.s
+
+# target to generate assembly for a file
+tcp_n_server/Src/handle_client.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tcp_n_server.dir/build.make CMakeFiles/tcp_n_server.dir/tcp_n_server/Src/handle_client.c.s
+.PHONY : tcp_n_server/Src/handle_client.c.s
+
 tcp_n_server/Src/main.o: tcp_n_server/Src/main.c.o
 .PHONY : tcp_n_server/Src/main.o
 
@@ -307,6 +331,9 @@ help:
 	@echo "... tcp_client/Src/main.o"
 	@echo "... tcp_client/Src/main.i"
 	@echo "... tcp_client/Src/main.s"
+	@echo "... tcp_n_server/Src/handle_client.o"
+	@echo "... tcp_n_server/Src/handle_client.i"
+	@echo "... tcp_n_server/Src/handle_client.s"
 	@echo "... tcp_n_server/Src/main.o"
 	@echo "... tcp_n_server/Src/main.i"
 	@echo "... tcp_n_server/Src/main.s"

@@ -83,10 +83,24 @@ CMakeFiles/tcp_n_server.dir/tcp_n_server/Src/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/tcp_n_server.dir/tcp_n_server/Src/main.c.s"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/wayne/net_study/tcp_n_server/Src/main.c -o CMakeFiles/tcp_n_server.dir/tcp_n_server/Src/main.c.s
 
+CMakeFiles/tcp_n_server.dir/tcp_n_server/Src/handle_client.c.o: CMakeFiles/tcp_n_server.dir/flags.make
+CMakeFiles/tcp_n_server.dir/tcp_n_server/Src/handle_client.c.o: /home/wayne/net_study/tcp_n_server/Src/handle_client.c
+CMakeFiles/tcp_n_server.dir/tcp_n_server/Src/handle_client.c.o: CMakeFiles/tcp_n_server.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/wayne/net_study/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/tcp_n_server.dir/tcp_n_server/Src/handle_client.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/tcp_n_server.dir/tcp_n_server/Src/handle_client.c.o -MF CMakeFiles/tcp_n_server.dir/tcp_n_server/Src/handle_client.c.o.d -o CMakeFiles/tcp_n_server.dir/tcp_n_server/Src/handle_client.c.o -c /home/wayne/net_study/tcp_n_server/Src/handle_client.c
+
+CMakeFiles/tcp_n_server.dir/tcp_n_server/Src/handle_client.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/tcp_n_server.dir/tcp_n_server/Src/handle_client.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/wayne/net_study/tcp_n_server/Src/handle_client.c > CMakeFiles/tcp_n_server.dir/tcp_n_server/Src/handle_client.c.i
+
+CMakeFiles/tcp_n_server.dir/tcp_n_server/Src/handle_client.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/tcp_n_server.dir/tcp_n_server/Src/handle_client.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/wayne/net_study/tcp_n_server/Src/handle_client.c -o CMakeFiles/tcp_n_server.dir/tcp_n_server/Src/handle_client.c.s
+
 CMakeFiles/tcp_n_server.dir/Protocol/Src/tcp_protocol.c.o: CMakeFiles/tcp_n_server.dir/flags.make
 CMakeFiles/tcp_n_server.dir/Protocol/Src/tcp_protocol.c.o: /home/wayne/net_study/Protocol/Src/tcp_protocol.c
 CMakeFiles/tcp_n_server.dir/Protocol/Src/tcp_protocol.c.o: CMakeFiles/tcp_n_server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/wayne/net_study/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/tcp_n_server.dir/Protocol/Src/tcp_protocol.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/wayne/net_study/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/tcp_n_server.dir/Protocol/Src/tcp_protocol.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/tcp_n_server.dir/Protocol/Src/tcp_protocol.c.o -MF CMakeFiles/tcp_n_server.dir/Protocol/Src/tcp_protocol.c.o.d -o CMakeFiles/tcp_n_server.dir/Protocol/Src/tcp_protocol.c.o -c /home/wayne/net_study/Protocol/Src/tcp_protocol.c
 
 CMakeFiles/tcp_n_server.dir/Protocol/Src/tcp_protocol.c.i: cmake_force
@@ -100,7 +114,7 @@ CMakeFiles/tcp_n_server.dir/Protocol/Src/tcp_protocol.c.s: cmake_force
 CMakeFiles/tcp_n_server.dir/Protocol/Src/tcp_tlv.c.o: CMakeFiles/tcp_n_server.dir/flags.make
 CMakeFiles/tcp_n_server.dir/Protocol/Src/tcp_tlv.c.o: /home/wayne/net_study/Protocol/Src/tcp_tlv.c
 CMakeFiles/tcp_n_server.dir/Protocol/Src/tcp_tlv.c.o: CMakeFiles/tcp_n_server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/wayne/net_study/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/tcp_n_server.dir/Protocol/Src/tcp_tlv.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/wayne/net_study/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/tcp_n_server.dir/Protocol/Src/tcp_tlv.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/tcp_n_server.dir/Protocol/Src/tcp_tlv.c.o -MF CMakeFiles/tcp_n_server.dir/Protocol/Src/tcp_tlv.c.o.d -o CMakeFiles/tcp_n_server.dir/Protocol/Src/tcp_tlv.c.o -c /home/wayne/net_study/Protocol/Src/tcp_tlv.c
 
 CMakeFiles/tcp_n_server.dir/Protocol/Src/tcp_tlv.c.i: cmake_force
@@ -114,6 +128,7 @@ CMakeFiles/tcp_n_server.dir/Protocol/Src/tcp_tlv.c.s: cmake_force
 # Object files for target tcp_n_server
 tcp_n_server_OBJECTS = \
 "CMakeFiles/tcp_n_server.dir/tcp_n_server/Src/main.c.o" \
+"CMakeFiles/tcp_n_server.dir/tcp_n_server/Src/handle_client.c.o" \
 "CMakeFiles/tcp_n_server.dir/Protocol/Src/tcp_protocol.c.o" \
 "CMakeFiles/tcp_n_server.dir/Protocol/Src/tcp_tlv.c.o"
 
@@ -121,11 +136,12 @@ tcp_n_server_OBJECTS = \
 tcp_n_server_EXTERNAL_OBJECTS =
 
 tcp_n_server: CMakeFiles/tcp_n_server.dir/tcp_n_server/Src/main.c.o
+tcp_n_server: CMakeFiles/tcp_n_server.dir/tcp_n_server/Src/handle_client.c.o
 tcp_n_server: CMakeFiles/tcp_n_server.dir/Protocol/Src/tcp_protocol.c.o
 tcp_n_server: CMakeFiles/tcp_n_server.dir/Protocol/Src/tcp_tlv.c.o
 tcp_n_server: CMakeFiles/tcp_n_server.dir/build.make
 tcp_n_server: CMakeFiles/tcp_n_server.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/wayne/net_study/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C executable tcp_n_server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/wayne/net_study/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking C executable tcp_n_server"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/tcp_n_server.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

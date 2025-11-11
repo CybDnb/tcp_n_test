@@ -33,6 +33,7 @@ target_link_libraries(tcp_server Protocol_Includes)
 
 add_executable(tcp_n_server
     tcp_n_server/Src/main.c
+    tcp_n_server/Src/handle_client.c
     ${PROTOCOL_SOURCES} 
 )
 target_link_libraries(tcp_n_server Protocol_Includes) 

@@ -6,8 +6,16 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 #include <sys/socket.h>
+#include <stdatomic.h>
 #include "tcp_protocol.h" 
 #include "tcp_tlv.h"       
+
+static _Atomic uint32_t g_seq = 0;
+
+static inline uint32_t next_seq(void)
+{
+    return atomic_fetch_add_explicit(&g_seq, 1u, memory_order_relaxed);
+}
 
 static void ignore_sigpipe(void) {
     signal(SIGPIPE, SIG_IGN);
@@ -41,6 +49,7 @@ static int send_file(int fd, const char *path) {
     mstart.hdr.version_minor  = 0;
     mstart.hdr.message_type   = MSG_FILE_START;
     mstart.hdr.payload_length = start_len;
+    mstart.hdr.seq            = next_seq(); 
     mstart.payload            = start_payload;
 
     if (send_message(fd, &mstart) < 0) {
@@ -55,37 +64,71 @@ static int send_file(int fd, const char *path) {
     uint64_t sent_total = 0;
 
     for (;;) {
-        size_t r = fread(data_buf, 1, CHUNK_SZ, fp);
-        if (r == 0) break;
+        // 读取 A
+        static uint8_t rawA[CHUNK_SZ];
+        size_t r1 = fread(rawA, 1, CHUNK_SZ, fp);
+        if (r1 == 0) break;
 
-        uint32_t payload_len = 0;
-        if (build_payload_file_data(offset, data_buf, (uint32_t)r,
-                                    data_payload, sizeof(data_payload), &payload_len) < 0) {
-            fprintf(stderr, "build FILE_DATA payload failed\n");
-            fclose(fp);
-            return -1;
+        // “偷看”再读 B
+        static uint8_t rawB[CHUNK_SZ];
+        size_t r2 = fread(rawB, 1, CHUNK_SZ, fp);
+
+        if (r2 > 0) {
+            // 预留两个连续序号：A=base, B=base+1
+            uint32_t base = atomic_fetch_add_explicit(&g_seq, 2u, memory_order_relaxed);
+            uint32_t seqA = base;
+            uint32_t seqB = (base + 1u) & 0xFFFFFFFFu;
+
+            // 先发 B（offset_B = offset + r1）
+            static uint8_t payloadB[CHUNK_SZ + 32];
+            uint32_t lenB = 0;
+            if (build_payload_file_data(offset + r1, rawB, (uint32_t)r2,
+                                        payloadB, sizeof(payloadB), &lenB) < 0) {
+                fprintf(stderr, "build FILE_DATA B failed\n"); fclose(fp); return -1;
+            }
+            protocol_msg mB = {0};
+            mB.hdr.version_major = 1; mB.hdr.version_minor = 0;
+            mB.hdr.message_type = MSG_FILE_DATA; mB.hdr.payload_length = lenB;
+            mB.hdr.seq = seqB;
+            mB.payload = payloadB;
+            if (send_message(fd, &mB) < 0) { perror("send FILE_DATA B"); fclose(fp); return -1; }
+
+            // 再发 A（offset_A = offset）
+            static uint8_t payloadA[CHUNK_SZ + 32];
+            uint32_t lenA = 0;
+            if (build_payload_file_data(offset, rawA, (uint32_t)r1,
+                                        payloadA, sizeof(payloadA), &lenA) < 0) {
+                fprintf(stderr, "build FILE_DATA A failed\n"); fclose(fp); return -1;
+            }
+            protocol_msg mA = {0};
+            mA.hdr.version_major = 1; mA.hdr.version_minor = 0;
+            mA.hdr.message_type = MSG_FILE_DATA; mA.hdr.payload_length = lenA;
+            mA.hdr.seq = seqA;               // 注意：A 的 seq 比 B 小
+            mA.payload = payloadA;
+            if (send_message(fd, &mA) < 0) { perror("send FILE_DATA A"); fclose(fp); return -1; }
+
+            offset     += r1 + r2;
+            sent_total += r1 + r2;
+        } else {
+            // 最后一块只有 A：正常顺序即可
+            static uint8_t payload[CHUNK_SZ + 32];
+            uint32_t len = 0;
+            if (build_payload_file_data(offset, rawA, (uint32_t)r1,
+                                        payload, sizeof(payload), &len) < 0) {
+                fprintf(stderr, "build FILE_DATA failed\n"); fclose(fp); return -1;
+            }
+            protocol_msg m = {0};
+            m.hdr.version_major = 1; m.hdr.version_minor = 0;
+            m.hdr.message_type = MSG_FILE_DATA; m.hdr.payload_length = len;
+            m.hdr.seq = next_seq();          // 单块时随便取一个新 seq
+            m.payload = payload;
+            if (send_message(fd, &m) < 0) { perror("send FILE_DATA"); fclose(fp); return -1; }
+
+            offset     += r1;
+            sent_total += r1;
         }
 
-        protocol_msg mdata = {0};
-        mdata.hdr.version_major  = 1;
-        mdata.hdr.version_minor  = 0;
-        mdata.hdr.message_type   = MSG_FILE_DATA;
-        mdata.hdr.payload_length = payload_len;
-        mdata.payload            = data_payload;
-
-        if (send_message(fd, &mdata) < 0) {
-            perror("send FILE_DATA");
-            fclose(fp);
-            return -1;
-        }
-
-        offset     += r;
-        sent_total += r;
-
-        fprintf(stderr, "\r[client] sent %llu / %llu bytes (%.1f%%)",
-                (unsigned long long)sent_total,
-                (unsigned long long)fsize,
-                fsize ? (sent_total * 100.0 / fsize) : 100.0);
+        fprintf(stderr, "\r[client] sent %llu bytes", (unsigned long long)sent_total);
         fflush(stderr);
     }
     fclose(fp);
@@ -96,6 +139,7 @@ static int send_file(int fd, const char *path) {
     mend.hdr.version_minor  = 0;
     mend.hdr.message_type   = MSG_FILE_END;
     mend.hdr.payload_length = 0;
+    mend.hdr.seq            = next_seq();
     mend.payload            = NULL;
 
     if (send_message(fd, &mend) < 0) {
@@ -151,6 +195,7 @@ int main(int argc, char const *argv[]) {
         out.hdr.version_minor  = 0;
         out.hdr.message_type   = MSG_ECHO;         
         out.hdr.payload_length = (uint32_t)len;
+        out.hdr.seq            = next_seq(); 
         out.payload            = (void*)line;
 
         if (send_message(fd, &out) < 0) {
